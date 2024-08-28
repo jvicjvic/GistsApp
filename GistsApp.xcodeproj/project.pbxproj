@@ -9,28 +9,28 @@
 /* Begin PBXBuildFile section */
 		8AF134462C7E4984002E4E3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134452C7E4984002E4E3C /* AppDelegate.swift */; };
 		8AF134482C7E4984002E4E3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134472C7E4984002E4E3C /* SceneDelegate.swift */; };
-		8AF1344A2C7E4984002E4E3C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134492C7E4984002E4E3C /* ViewController.swift */; };
-		8AF1344D2C7E4984002E4E3C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 8AF1344C2C7E4984002E4E3C /* Base */; };
 		8AF1344F2C7E4986002E4E3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AF1344E2C7E4986002E4E3C /* Assets.xcassets */; };
 		8AF134522C7E4986002E4E3C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 8AF134512C7E4986002E4E3C /* Base */; };
 		8AF134602C7E4B6E002E4E3C /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF1345F2C7E4B6E002E4E3C /* Gist.swift */; };
 		8AF134622C7E532A002E4E3C /* GistRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134612C7E532A002E4E3C /* GistRepository.swift */; };
 		8AF134642C7E538A002E4E3C /* ProductionGistRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134632C7E538A002E4E3C /* ProductionGistRepository.swift */; };
 		8AF134972C7FB75B002E4E3C /* NetworkService in Frameworks */ = {isa = PBXBuildFile; productRef = 8AF134962C7FB75B002E4E3C /* NetworkService */; };
+		8AF134992C7FBE74002E4E3C /* GistsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134982C7FBE74002E4E3C /* GistsListVC.swift */; };
+		8AF1349B2C7FC335002E4E3C /* GistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF1349A2C7FC335002E4E3C /* GistCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8AF134422C7E4984002E4E3C /* GistsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GistsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AF134452C7E4984002E4E3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AF134472C7E4984002E4E3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8AF134492C7E4984002E4E3C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8AF1344C2C7E4984002E4E3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8AF1344E2C7E4986002E4E3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8AF134512C7E4986002E4E3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8AF134532C7E4986002E4E3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AF1345F2C7E4B6E002E4E3C /* Gist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
 		8AF134612C7E532A002E4E3C /* GistRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistRepository.swift; sourceTree = "<group>"; };
 		8AF134632C7E538A002E4E3C /* ProductionGistRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionGistRepository.swift; sourceTree = "<group>"; };
+		8AF134982C7FBE74002E4E3C /* GistsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistsListVC.swift; sourceTree = "<group>"; };
+		8AF1349A2C7FC335002E4E3C /* GistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,8 +68,6 @@
 				8AF134592C7E49B5002E4E3C /* Networking */,
 				8AF134452C7E4984002E4E3C /* AppDelegate.swift */,
 				8AF134472C7E4984002E4E3C /* SceneDelegate.swift */,
-				8AF134492C7E4984002E4E3C /* ViewController.swift */,
-				8AF1344B2C7E4984002E4E3C /* Main.storyboard */,
 				8AF1344E2C7E4986002E4E3C /* Assets.xcassets */,
 				8AF134502C7E4986002E4E3C /* LaunchScreen.storyboard */,
 				8AF134532C7E4986002E4E3C /* Info.plist */,
@@ -96,6 +94,8 @@
 		8AF1345D2C7E4AE3002E4E3C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8AF1349C2C7FC339002E4E3C /* Components */,
+				8AF134982C7FBE74002E4E3C /* GistsListVC.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -108,6 +108,14 @@
 				8AF134632C7E538A002E4E3C /* ProductionGistRepository.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		8AF1349C2C7FC339002E4E3C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8AF1349A2C7FC335002E4E3C /* GistCell.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +184,6 @@
 			files = (
 				8AF1344F2C7E4986002E4E3C /* Assets.xcassets in Resources */,
 				8AF134522C7E4986002E4E3C /* Base in Resources */,
-				8AF1344D2C7E4984002E4E3C /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,8 +194,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AF1349B2C7FC335002E4E3C /* GistCell.swift in Sources */,
 				8AF134602C7E4B6E002E4E3C /* Gist.swift in Sources */,
-				8AF1344A2C7E4984002E4E3C /* ViewController.swift in Sources */,
+				8AF134992C7FBE74002E4E3C /* GistsListVC.swift in Sources */,
 				8AF134642C7E538A002E4E3C /* ProductionGistRepository.swift in Sources */,
 				8AF134622C7E532A002E4E3C /* GistRepository.swift in Sources */,
 				8AF134462C7E4984002E4E3C /* AppDelegate.swift in Sources */,
@@ -199,14 +207,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8AF1344B2C7E4984002E4E3C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8AF1344C2C7E4984002E4E3C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8AF134502C7E4986002E4E3C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -349,7 +349,6 @@
 				INFOPLIST_FILE = GistsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -377,7 +376,6 @@
 				INFOPLIST_FILE = GistsApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
