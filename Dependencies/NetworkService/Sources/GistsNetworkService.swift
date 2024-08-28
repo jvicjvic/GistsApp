@@ -12,7 +12,7 @@ open class GistsNetworkService {
 
     public init() {}
 
-    /// Obtem lista de Gists publicos
+    /// Obtem lista de Gists publicos. `page` a partir de 1.
     public func fetchPublicGists<T: Decodable>(page: Int, itemsPerPage: Int = 30) async throws -> [T] {
         let parameters = [
             URLQueryItem(name: "page", value: String(page)),
