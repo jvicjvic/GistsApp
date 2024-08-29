@@ -28,15 +28,15 @@ final class GistsListVM: ObservableObject {
     }
 
     func fetchGists() async {
-        isLoading = true
         do {
+            isLoading = true
             let newGists = try await repository.fetchPublicGists(page: currentPage)
             gists.append(contentsOf: newGists)
-            isLoading = false
         } catch {
-            isLoading = false
             errorMessage = error.localizedDescription
         }
+        
+        isLoading = false
     }
 
     func didReachEnd() {

@@ -75,8 +75,7 @@ class GistCell: UITableViewCell {
 
     func configure(with gist: Gist) {
         fileCountLabel.text = "\(gist.fileCount) arquivo(s)"
-        let description = gist.name ?? "Sem descrição"
-        titleLabel.text = "\(gist.owner.login) / \(description)"
+        titleLabel.text = "\(gist.owner.login) / \(gist.name)"
 
         avatarImageView.image = nil
         Task { @MainActor in

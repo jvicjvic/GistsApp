@@ -18,8 +18,17 @@ class GistsListVC: UITableViewController {
         title = "Gists"
         tableView.register(GistCell.self, forCellReuseIdentifier: "GistCell")
 
-        viewModel.$gists.receive(on: DispatchQueue.main).sink {_ in
-            self.tableView.reloadData()
+//        viewModel.$gists.receive(on: DispatchQueue.main).sink {_ in
+//            self.tableView.reloadData()
+//        }
+//        .store(in: &cancellables)
+        viewModel.$isLoading
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink { isLoading in
+            if !isLoading {
+                self.tableView.reloadData()
+            }
         }
         .store(in: &cancellables)
 
@@ -45,5 +54,11 @@ class GistsListVC: UITableViewController {
         if indexPath.row == viewModel.gists.count - 5 {
             viewModel.didReachEnd()
         }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedGist = viewModel.gists[indexPath.row]
+        let detailVC = GistDetailVC(viewModel: GistDetailVM(gist: selectedGist))
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

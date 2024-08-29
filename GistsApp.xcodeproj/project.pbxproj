@@ -76,8 +76,8 @@
 		8AF134442C7E4984002E4E3C /* GistsApp */ = {
 			isa = PBXGroup;
 			children = (
-				8AF134A62C802B31002E4E3C /* Gist Detail */,
-				8AF1345C2C7E4AC3002E4E3C /* Gists List */,
+				8AF134A62C802B31002E4E3C /* GistDetail */,
+				8AF1345C2C7E4AC3002E4E3C /* GistsList */,
 				8AF134452C7E4984002E4E3C /* AppDelegate.swift */,
 				8AF134472C7E4984002E4E3C /* SceneDelegate.swift */,
 				8AF134A22C7FFEFB002E4E3C /* CGFloat+SpacingTokens.swift */,
@@ -88,13 +88,13 @@
 			path = GistsApp;
 			sourceTree = "<group>";
 		};
-		8AF1345C2C7E4AC3002E4E3C /* Gists List */ = {
+		8AF1345C2C7E4AC3002E4E3C /* GistsList */ = {
 			isa = PBXGroup;
 			children = (
 				8AF1345E2C7E4AE8002E4E3C /* Data */,
 				8AF1345D2C7E4AE3002E4E3C /* UI */,
 			);
-			path = "Gists List";
+			path = GistsList;
 			sourceTree = "<group>";
 		};
 		8AF1345D2C7E4AE3002E4E3C /* UI */ = {
@@ -125,12 +125,12 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		8AF134A62C802B31002E4E3C /* Gist Detail */ = {
+		8AF134A62C802B31002E4E3C /* GistDetail */ = {
 			isa = PBXGroup;
 			children = (
 				8AF134A72C802B45002E4E3C /* UI */,
 			);
-			path = "Gist Detail";
+			path = GistDetail;
 			sourceTree = "<group>";
 		};
 		8AF134A72C802B45002E4E3C /* UI */ = {
