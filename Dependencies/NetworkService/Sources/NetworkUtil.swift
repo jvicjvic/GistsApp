@@ -21,4 +21,13 @@ open class NetworkUtil {
             return nil
         }
     }
+
+    public static func fetchFileContent(from urlString: String) async throws -> String {
+        guard let url = URL(string: urlString) else {
+            throw URLError(.badURL)
+        }
+
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return String(data: data, encoding: .utf8) ?? "Unable to decode file content"
+    }
 }

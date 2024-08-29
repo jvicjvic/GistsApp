@@ -21,6 +21,8 @@
 		8AF134A12C7FDBFB002E4E3C /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8AF134A02C7FDBFB002E4E3C /* SnapKit-Dynamic */; };
 		8AF134A32C7FFEFC002E4E3C /* CGFloat+SpacingTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134A22C7FFEFB002E4E3C /* CGFloat+SpacingTokens.swift */; };
 		8AF134A52C80157B002E4E3C /* GistsListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134A42C80157B002E4E3C /* GistsListVM.swift */; };
+		8AF134A92C802B72002E4E3C /* GistDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134A82C802B72002E4E3C /* GistDetailVC.swift */; };
+		8AF134AB2C802B82002E4E3C /* GistDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134AA2C802B82002E4E3C /* GistDetailVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		8AF1349A2C7FC335002E4E3C /* GistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistCell.swift; sourceTree = "<group>"; };
 		8AF134A22C7FFEFB002E4E3C /* CGFloat+SpacingTokens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+SpacingTokens.swift"; sourceTree = "<group>"; };
 		8AF134A42C80157B002E4E3C /* GistsListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistsListVM.swift; sourceTree = "<group>"; };
+		8AF134A82C802B72002E4E3C /* GistDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistDetailVC.swift; sourceTree = "<group>"; };
+		8AF134AA2C802B82002E4E3C /* GistDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistDetailVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 		8AF134442C7E4984002E4E3C /* GistsApp */ = {
 			isa = PBXGroup;
 			children = (
+				8AF134A62C802B31002E4E3C /* Gist Detail */,
 				8AF1345C2C7E4AC3002E4E3C /* Gists List */,
 				8AF134452C7E4984002E4E3C /* AppDelegate.swift */,
 				8AF134472C7E4984002E4E3C /* SceneDelegate.swift */,
@@ -118,6 +123,23 @@
 				8AF1349A2C7FC335002E4E3C /* GistCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8AF134A62C802B31002E4E3C /* Gist Detail */ = {
+			isa = PBXGroup;
+			children = (
+				8AF134A72C802B45002E4E3C /* UI */,
+			);
+			path = "Gist Detail";
+			sourceTree = "<group>";
+		};
+		8AF134A72C802B45002E4E3C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8AF134A82C802B72002E4E3C /* GistDetailVC.swift */,
+				8AF134AA2C802B82002E4E3C /* GistDetailVM.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AF134A92C802B72002E4E3C /* GistDetailVC.swift in Sources */,
 				8AF134A52C80157B002E4E3C /* GistsListVM.swift in Sources */,
 				8AF1349B2C7FC335002E4E3C /* GistCell.swift in Sources */,
 				8AF134602C7E4B6E002E4E3C /* Gist.swift in Sources */,
@@ -208,6 +231,7 @@
 				8AF134622C7E532A002E4E3C /* GistRepository.swift in Sources */,
 				8AF134462C7E4984002E4E3C /* AppDelegate.swift in Sources */,
 				8AF134482C7E4984002E4E3C /* SceneDelegate.swift in Sources */,
+				8AF134AB2C802B82002E4E3C /* GistDetailVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

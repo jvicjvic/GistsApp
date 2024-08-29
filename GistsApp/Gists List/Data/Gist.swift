@@ -17,8 +17,8 @@ struct Gist: Codable, Identifiable {
         return files.count
     }
 
-    var name: String? {
-        files.count > 0 ? files.first?.value.filename : nil
+    var name: String {
+        files.count > 0 ? files.first!.value.filename : ""
     }
 }
 
@@ -35,5 +35,11 @@ struct Owner: Codable {
 struct GistFile: Codable {
     let filename: String
     let content: String?
-    let raw_url: String?
+    let url: String?
+
+    enum CodingKeys: String, CodingKey {
+        case filename
+        case content
+        case url = "raw_url"
+    }
 }
