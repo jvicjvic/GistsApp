@@ -38,4 +38,12 @@ final class GistsListVM: ObservableObject {
             errorMessage = error.localizedDescription
         }
     }
+
+    func didReachEnd() {
+        // carrega mais
+        currentPage += 1
+        Task {
+            await fetchGists()
+        }
+    }
 }

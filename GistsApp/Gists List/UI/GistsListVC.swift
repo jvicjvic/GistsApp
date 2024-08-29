@@ -40,4 +40,10 @@ class GistsListVC: UITableViewController {
     override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         .spacing80
     }
+
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == viewModel.gists.count - 5 {
+            viewModel.didReachEnd()
+        }
+    }
 }
