@@ -66,15 +66,15 @@ class GistDetailVC: UIViewController {
         view.addSubview(mainContainer)
         remakeConstraints()
 
-        title = viewModel.gist.name
-        titleLabel.text = viewModel.headerTitle
-
         setupBindings()
 
         viewModel.connect()
     }
 
     func setupBindings() {
+        title = viewModel.title
+        titleLabel.text = viewModel.headerTitle
+
         // avatar
         viewModel.$avatarImage
             .receive(on: DispatchQueue.main)

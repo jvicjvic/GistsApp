@@ -15,24 +15,28 @@ class GistsListVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Gists"
         tableView.register(GistCell.self, forCellReuseIdentifier: "GistCell")
 
-//        viewModel.$gists.receive(on: DispatchQueue.main).sink {_ in
-//            self.tableView.reloadData()
-//        }
-//        .store(in: &cancellables)
-        viewModel.$isLoading
-            .dropFirst()
-            .receive(on: DispatchQueue.main)
-            .sink { isLoading in
-            if !isLoading {
-                self.tableView.reloadData()
-            }
-        }
-        .store(in: &cancellables)
-
+        setupBindings()
         viewModel.connect()
+    }
+
+    func setupBindings() {
+        title = viewModel.title
+        
+        viewModel.$gists
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .store(in: &cancellables)
+
+        viewModel.$errorMessage
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] message in
+                self?.showAlertMessage(title: "Erro", message: message)
+            }
+            .store(in: &cancellables)
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
@@ -60,5 +64,14 @@ class GistsListVC: UITableViewController {
         let selectedGist = viewModel.gists[indexPath.row]
         let detailVC = GistDetailVC(viewModel: GistDetailVM(gist: selectedGist))
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+extension UIViewController {
+    public func showAlertMessage(title: String, message: String){
+        let alertMessagePopUpBox = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default)
+        alertMessagePopUpBox.addAction(okButton)
+        self.present(alertMessagePopUpBox, animated: true)
     }
 }

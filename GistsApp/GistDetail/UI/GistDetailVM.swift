@@ -13,9 +13,12 @@ import UIKit
 final class GistDetailVM: ObservableObject {
     private(set) var gist: Gist
     @Published private(set) var fileContent = ""
-    @Published private(set) var isLoading = false
     @Published var errorMessage = ""
     @Published var avatarImage: UIImage?
+
+    var title: String {
+        gist.name
+    }
 
     var headerTitle: String {
         "\(gist.owner.login) / \(gist.name)"
@@ -45,12 +48,9 @@ final class GistDetailVM: ObservableObject {
         }
 
         do {
-            isLoading = true
             fileContent = try await NetworkUtil.fetchFileContent(from: fileUrl)
         } catch {
             errorMessage = error.localizedDescription
         }
-
-        isLoading = false
     }
 }

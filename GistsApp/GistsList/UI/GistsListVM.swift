@@ -13,6 +13,8 @@ final class GistsListVM: ObservableObject {
     @Published private(set) var isLoading = false
     @Published var errorMessage = ""
 
+    let title = "Gists"
+
     private var currentPage = 1
 
     private let repository: GistRepository
