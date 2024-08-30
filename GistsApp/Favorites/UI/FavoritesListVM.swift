@@ -10,10 +10,12 @@ import UIKit
 import NetworkService
 
 @MainActor
-final class FavoritesListVM: ObservableObject {
+final class FavoritesListVM {
     @Published private(set) var gists: [FavoriteGist] = []
     @Published private(set) var isLoading = false
     @Published var errorMessage = ""
+
+    @Published var selectedItem: FavoriteGist?
 
     let title = "Favoritos"
 
@@ -35,5 +37,9 @@ final class FavoritesListVM: ObservableObject {
 
     func loadGistUserAvatar(gist: FavoriteGist) async -> UIImage? {
         await NetworkUtil.fetchImage(from: gist.avatarUrl)
+    }
+
+    func didSelect(index: Int) {
+        selectedItem = gists[index]
     }
 }

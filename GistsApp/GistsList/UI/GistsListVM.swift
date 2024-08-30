@@ -10,10 +10,12 @@ import NetworkService
 import UIKit
 
 @MainActor
-final class GistsListVM: ObservableObject {
+final class GistsListVM {
     @Published private(set) var gists: [Gist] = []
     @Published private(set) var isLoading = false
-    @Published var errorMessage = ""
+    @Published var errorMessage: String?
+
+    @Published var selectedItem: Gist?
 
     let title = "Gists"
 
@@ -54,5 +56,9 @@ final class GistsListVM: ObservableObject {
         Task {
             await fetchGists()
         }
+    }
+
+    func didSelect(index: Int) {
+        selectedItem = gists[index]
     }
 }

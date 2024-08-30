@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var tabBarController: UITabBarController?
+    var applicationCoordinator: ApplicationCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -18,23 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
+            applicationCoordinator = ApplicationCoordinator(window: window)
+            applicationCoordinator?.start()
 
-            let navGistsList = UINavigationController(rootViewController: GistsListVC())
-            let appearance = UINavigationBarAppearance()
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.darkGray]
-            navGistsList.navigationBar.standardAppearance = appearance
-            navGistsList.navigationBar.scrollEdgeAppearance = appearance
-
-            let navFavoriteGists = UINavigationController(rootViewController: FavoritesListVC())
-            navFavoriteGists.navigationBar.standardAppearance = appearance
-            navFavoriteGists.navigationBar.scrollEdgeAppearance = appearance
-
-            let tabBar = UITabBarController()
-            tabBar.viewControllers = [navGistsList, navFavoriteGists]
-            tabBarController = tabBar
-
-            window.rootViewController = tabBar
-            window.backgroundColor = .white
             window.makeKeyAndVisible()
             self.window = window
         }

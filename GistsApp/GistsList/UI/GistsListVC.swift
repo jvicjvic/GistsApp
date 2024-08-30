@@ -10,12 +10,14 @@ import UIKit
 import Combine
 
 class GistsListVC: UITableViewController {
-    private let viewModel = GistsListVM()
+    let viewModel: GistsListVM
     private var cancellables = Set<AnyCancellable>()
     private let cellID = "GistCell"
 
-    init() {
+    init(viewModel: GistsListVM) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+
         title = viewModel.title
         tabBarItem.image = UIImage(systemName: "doc")
     }
@@ -45,6 +47,7 @@ class GistsListVC: UITableViewController {
 
         viewModel.$errorMessage
             .receive(on: DispatchQueue.main)
+            .compactMap { $0 }
             .sink { [weak self] message in
                 self?.showAlertMessage(title: "Erro", message: message)
             }
@@ -80,17 +83,6 @@ class GistsListVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedGist = viewModel.gists[indexPath.row]
-        let detailVC = GistDetailVC(viewModel: GistDetailVM(gistId: selectedGist.id))
-        navigationController?.pushViewController(detailVC, animated: true)
-    }
-}
-
-extension UIViewController {
-    public func showAlertMessage(title: String, message: String){
-        let alertMessagePopUpBox = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default)
-        alertMessagePopUpBox.addAction(okButton)
-        self.present(alertMessagePopUpBox, animated: true)
+        viewModel.didSelect(index: indexPath.row)
     }
 }

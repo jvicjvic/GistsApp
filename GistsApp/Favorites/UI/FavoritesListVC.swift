@@ -10,11 +10,12 @@ import Combine
 import NetworkService
 
 class FavoritesListVC: UITableViewController {
-    private let viewModel = FavoritesListVM()
+    private let viewModel: FavoritesListVM
     private var cancellables = Set<AnyCancellable>()
     private let cellID = "GistCell"
 
-    init() {
+    init(viewModel: FavoritesListVM) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         title = viewModel.title
         tabBarItem.image = UIImage(systemName: "star.fill")
@@ -68,8 +69,6 @@ class FavoritesListVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedGist = viewModel.gists[indexPath.row]
-        let detailVC = GistDetailVC(viewModel: GistDetailVM(gistId: selectedGist.id))
-        navigationController?.pushViewController(detailVC, animated: true)
+        viewModel.didSelect(index: indexPath.row)
     }
 }

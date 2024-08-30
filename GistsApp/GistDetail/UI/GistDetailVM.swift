@@ -10,7 +10,7 @@ import NetworkService
 import UIKit
 
 @MainActor
-final class GistDetailVM: ObservableObject {
+final class GistDetailVM {
     @Published private(set) var gist: Gist?
     private var gistId: String
     @Published private(set) var fileContent: String?
