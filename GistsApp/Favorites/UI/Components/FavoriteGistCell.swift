@@ -40,6 +40,10 @@ class FavoriteGistCell: UITableViewCell {
         return container
     }()
 
+    lazy var placeholderImage: UIImage = {
+        ImageUtil.generatePlaceholderImage(size: CGSize(width: 50, height: 50))
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(containerView)
@@ -77,34 +81,9 @@ class FavoriteGistCell: UITableViewCell {
         fileCountLabel.text = "\(gist.fileCount) arquivo(s)"
         titleLabel.text = "\(gist.ownerLogin) / \(gist.filename)"
 
-        avatarImageView.image = generatePlaceholderImage(size: CGSize(width: 50, height: 50))
+        avatarImageView.image = placeholderImage
         Task { @MainActor in
             await avatarImageView.image = NetworkUtil.fetchImage(from: gist.avatarUrl)
         }
-    }
-
-    func generatePlaceholderImage(size: CGSize, backgroundColor: UIColor = .lightGray, text: String? = nil) -> UIImage {
-        let renderer = UIGraphicsImageRenderer(size: size)
-        let image = renderer.image { context in
-            // Preencher o fundo com a cor especificada
-            backgroundColor.setFill()
-            context.fill(CGRect(origin: .zero, size: size))
-
-            if let text = text {
-                // Configurar o estilo do texto
-                let attributes: [NSAttributedString.Key: Any] = [
-                    .font: UIFont.boldSystemFont(ofSize: 30),
-                    .foregroundColor: UIColor.white
-                ]
-                let textSize = text.size(withAttributes: attributes)
-                let textRect = CGRect(x: (size.width - textSize.width) / 2,
-                                      y: (size.height - textSize.height) / 2,
-                                      width: textSize.width,
-                                      height: textSize.height)
-                text.draw(in: textRect, withAttributes: attributes)
-            }
-        }
-
-        return image
     }
 }

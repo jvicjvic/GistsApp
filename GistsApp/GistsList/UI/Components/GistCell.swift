@@ -40,6 +40,10 @@ class GistCell: UITableViewCell {
         return container
     }()
 
+    lazy var placeholderImage: UIImage = {
+        ImageUtil.generatePlaceholderImage(size: CGSize(width: 50, height: 50))
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(containerView)
@@ -77,7 +81,7 @@ class GistCell: UITableViewCell {
         fileCountLabel.text = "\(gist.fileCount) arquivo(s)"
         titleLabel.text = "\(gist.owner.login) / \(gist.filename)"
 
-        avatarImageView.image = nil
+        avatarImageView.image = placeholderImage
         Task { @MainActor in
             await avatarImageView.image = NetworkUtil.fetchImage(from: gist.owner.avatarUrl)
         }
