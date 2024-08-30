@@ -42,11 +42,29 @@ open class GistsNetworkService {
 
     /// Faz fetch de uma request
     private func fetch<T: Decodable>(request: URLRequest) async throws -> T {
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.invalidResponse
+        }
+
+        guard (200...299).contains(httpResponse.statusCode) else {
+            throw NetworkError.httpError(httpResponse.statusCode)
+        }
 
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
 
-        return try decoder.decode(T.self, from: data)
+        do {
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            throw NetworkError.decodingError
+        }
     }
+}
+
+enum NetworkError: Error {
+    case invalidResponse
+    case httpError(Int)
+    case decodingError
 }
