@@ -37,6 +37,7 @@ class GistDetailVC: UIViewController {
         textView.layer.borderWidth = 0.6
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.font = UIFont(name: "Menlo", size: 14)
+        textView.backgroundColor = UIColor(white: 0.96, alpha: 1.0)
         return textView
     }()
 
@@ -125,7 +126,7 @@ class GistDetailVC: UIViewController {
 
     func remakeConstraints() {
         mainContainer.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide).inset(CGFloat.spacing8)
+            make.edges.equalTo(view.safeAreaLayoutGuide).inset(CGFloat.spacing16)
         }
         headerContainer.snp.makeConstraints { make in
             make.height.equalTo(CGFloat.spacing64)
