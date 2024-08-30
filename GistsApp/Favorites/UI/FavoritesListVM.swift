@@ -15,7 +15,7 @@ final class FavoritesListVM: ObservableObject {
     @Published private(set) var isLoading = false
     @Published var errorMessage = ""
 
-    let title = "Favorites"
+    let title = "Favoritos"
 
     private var currentPage = 1
 
