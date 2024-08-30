@@ -16,6 +16,7 @@ class FavoritesListVC: UITableViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         title = viewModel.title
+        tabBarItem.image = UIImage(systemName: "star.fill")
     }
     
     required init?(coder: NSCoder) {

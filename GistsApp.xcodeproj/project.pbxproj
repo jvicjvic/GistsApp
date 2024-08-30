@@ -30,6 +30,7 @@
 		8AF134C02C8132CA002E4E3C /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134BF2C8132CA002E4E3C /* FavoritesManager.swift */; };
 		8AF134C22C81336A002E4E3C /* FavoriteGist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134C12C81336A002E4E3C /* FavoriteGist.swift */; };
 		8AF134C52C813CDD002E4E3C /* FavoriteGistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134C42C813CDD002E4E3C /* FavoriteGistCell.swift */; };
+		8AF134CA2C81635B002E4E3C /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134C92C81635B002E4E3C /* ImageUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		8AF134BF2C8132CA002E4E3C /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		8AF134C12C81336A002E4E3C /* FavoriteGist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGist.swift; sourceTree = "<group>"; };
 		8AF134C42C813CDD002E4E3C /* FavoriteGistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGistCell.swift; sourceTree = "<group>"; };
+		8AF134C92C81635B002E4E3C /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				8AF134452C7E4984002E4E3C /* AppDelegate.swift */,
 				8AF134472C7E4984002E4E3C /* SceneDelegate.swift */,
 				8AF134A22C7FFEFB002E4E3C /* CGFloat+SpacingTokens.swift */,
+				8AF134C92C81635B002E4E3C /* ImageUtil.swift */,
 				8AF1344E2C7E4986002E4E3C /* Assets.xcassets */,
 				8AF134502C7E4986002E4E3C /* LaunchScreen.storyboard */,
 				8AF134532C7E4986002E4E3C /* Info.plist */,
@@ -283,6 +286,7 @@
 				8AF134A32C7FFEFC002E4E3C /* CGFloat+SpacingTokens.swift in Sources */,
 				8AF134992C7FBE74002E4E3C /* GistsListVC.swift in Sources */,
 				8AF134BC2C812689002E4E3C /* FavoritesRepository.swift in Sources */,
+				8AF134CA2C81635B002E4E3C /* ImageUtil.swift in Sources */,
 				8AF134642C7E538A002E4E3C /* ProductionGistRepository.swift in Sources */,
 				8AF134C22C81336A002E4E3C /* FavoriteGist.swift in Sources */,
 				8AF134B92C811D27002E4E3C /* FavoritesListVM.swift in Sources */,

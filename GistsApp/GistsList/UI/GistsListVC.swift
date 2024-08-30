@@ -16,6 +16,7 @@ class GistsListVC: UITableViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         title = viewModel.title
+        tabBarItem.image = UIImage(systemName: "doc")
     }
     
     required init?(coder: NSCoder) {
