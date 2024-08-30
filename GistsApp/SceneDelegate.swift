@@ -19,14 +19,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
 
-            let navigationController = UINavigationController(rootViewController: GistsListVC())
+            let navGistsList = UINavigationController(rootViewController: GistsListVC())
             let appearance = UINavigationBarAppearance()
             appearance.titleTextAttributes = [.foregroundColor: UIColor.darkGray]
-            navigationController.navigationBar.standardAppearance = appearance
-            navigationController.navigationBar.scrollEdgeAppearance = appearance
+            navGistsList.navigationBar.standardAppearance = appearance
+            navGistsList.navigationBar.scrollEdgeAppearance = appearance
+
+            let navFavoriteGists = UINavigationController(rootViewController: FavoritesListVC())
+            navFavoriteGists.navigationBar.standardAppearance = appearance
+            navFavoriteGists.navigationBar.scrollEdgeAppearance = appearance
 
             let tabBar = UITabBarController()
-            tabBar.viewControllers = [navigationController]
+            tabBar.viewControllers = [navGistsList, navFavoriteGists]
             tabBarController = tabBar
 
             window.rootViewController = tabBar

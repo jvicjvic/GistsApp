@@ -66,28 +66,59 @@ class GistDetailVC: UIViewController {
         view.addSubview(mainContainer)
         remakeConstraints()
 
-        setupBindings()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"),
+                                                            style: .plain, target: self, action: #selector(didTapFavorite))
+        navigationItem.rightBarButtonItem?.isEnabled = false
 
+        setupBindings()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         viewModel.connect()
     }
 
+    @objc func didTapFavorite() {
+        viewModel.didTapFavorite()
+    }
+
     func setupBindings() {
-        title = viewModel.title
-        titleLabel.text = viewModel.headerTitle
+        // cabecalho
+        viewModel.$gist
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] gist in
+                guard let self else { return }
+                
+                self.title = self.viewModel.title
+                self.titleLabel.text = self.viewModel.headerTitle
+            }
+            .store(in: &cancellables)
+
+        // botao de favorito
+        viewModel.$isFavorite
+            .receive(on: DispatchQueue.main)
+            .compactMap { $0 }
+            .sink { [weak self] isFavorite in
+                guard let self else { return }
+
+                let imageName = isFavorite ? "star.fill" : "star"
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: imageName)
+            }
+            .store(in: &cancellables)
 
         // avatar
         viewModel.$avatarImage
             .receive(on: DispatchQueue.main)
-            .sink { image in
-            self.avatarImageView.image = image
+            .sink { [weak self] image in
+                self?.avatarImageView.image = image
         }
         .store(in: &cancellables)
 
         // arquivo
         viewModel.$fileContent
             .receive(on: DispatchQueue.main)
-            .sink { fileContent in
-            self.textView.text = fileContent
+            .sink { [weak self] fileContent in
+                self?.textView.text = fileContent
         }
         .store(in: &cancellables)
     }

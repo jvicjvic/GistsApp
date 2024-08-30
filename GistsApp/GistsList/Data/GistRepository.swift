@@ -9,4 +9,5 @@ import Foundation
 
 protocol GistRepository {
     func fetchPublicGists(page: Int) async throws -> [Gist]
+    func fetchGist(gistId: String) async throws -> Gist
 }

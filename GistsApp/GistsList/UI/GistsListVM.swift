@@ -19,7 +19,8 @@ final class GistsListVM: ObservableObject {
 
     private let repository: GistRepository
 
-    init(repository: GistRepository = ProductionGistRepository()) {
+    init(repository: GistRepository = ProductionGistRepository(), 
+         favoritesRepository: FavoritesRepository = ProductionFavoritesRepository()) {
         self.repository = repository
     }
 

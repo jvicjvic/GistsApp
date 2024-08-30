@@ -10,19 +10,19 @@ import Foundation
 struct Gist: Codable, Identifiable {
     let id: String
     let description: String?
-    let owner: Owner
+    let owner: GistOwner
     let files: [String: GistFile]
 
     var fileCount: Int {
         return files.count
     }
 
-    var name: String {
+    var filename: String {
         files.count > 0 ? files.first!.value.filename : ""
     }
 }
 
-struct Owner: Codable {
+struct GistOwner: Codable {
     let login: String
     let avatarUrl: String
 

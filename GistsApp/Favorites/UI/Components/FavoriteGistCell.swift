@@ -1,15 +1,15 @@
 //
-//  GistCell.swift
+//  FavoriteGistCell.swift
 //  GistsApp
 //
-//  Created by jvic on 28/08/24.
+//  Created by jvic on 29/08/24.
 //
 
 import NetworkService
 import SnapKit
 import UIKit
 
-class GistCell: UITableViewCell {
+class FavoriteGistCell: UITableViewCell {
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -73,13 +73,38 @@ class GistCell: UITableViewCell {
         }
     }
 
-    func configure(with gist: Gist) {
+    func configure(with gist: FavoriteGist) {
         fileCountLabel.text = "\(gist.fileCount) arquivo(s)"
-        titleLabel.text = "\(gist.owner.login) / \(gist.filename)"
+        titleLabel.text = "\(gist.ownerLogin) / \(gist.filename)"
 
-        avatarImageView.image = nil
+        avatarImageView.image = generatePlaceholderImage(size: CGSize(width: 50, height: 50))
         Task { @MainActor in
-            await avatarImageView.image = NetworkUtil.fetchImage(from: gist.owner.avatarUrl)
+            await avatarImageView.image = NetworkUtil.fetchImage(from: gist.avatarUrl)
         }
+    }
+
+    func generatePlaceholderImage(size: CGSize, backgroundColor: UIColor = .lightGray, text: String? = nil) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: size)
+        let image = renderer.image { context in
+            // Preencher o fundo com a cor especificada
+            backgroundColor.setFill()
+            context.fill(CGRect(origin: .zero, size: size))
+
+            if let text = text {
+                // Configurar o estilo do texto
+                let attributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.boldSystemFont(ofSize: 30),
+                    .foregroundColor: UIColor.white
+                ]
+                let textSize = text.size(withAttributes: attributes)
+                let textRect = CGRect(x: (size.width - textSize.width) / 2,
+                                      y: (size.height - textSize.height) / 2,
+                                      width: textSize.width,
+                                      height: textSize.height)
+                text.draw(in: textRect, withAttributes: attributes)
+            }
+        }
+
+        return image
     }
 }

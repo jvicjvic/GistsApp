@@ -14,4 +14,8 @@ final class ProductionGistRepository: GistRepository {
     func fetchPublicGists(page: Int) async throws -> [Gist] {
         try await networkService.fetchPublicGists(page: page)
     }
+
+    func fetchGist(gistId: String) async throws -> Gist {
+        try await networkService.fetchGistDetails(id: gistId)
+    }
 }
