@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+import NetworkService
 
 @MainActor
 final class FavoritesListVM: ObservableObject {
@@ -27,7 +29,11 @@ final class FavoritesListVM: ObservableObject {
         fetchGists()
     }
 
-    func fetchGists() {
+    private func fetchGists() {
         gists = repository.fetchFavorites()
+    }
+
+    func loadGistUserAvatar(gist: FavoriteGist) async -> UIImage? {
+        await NetworkUtil.fetchImage(from: gist.avatarUrl)
     }
 }

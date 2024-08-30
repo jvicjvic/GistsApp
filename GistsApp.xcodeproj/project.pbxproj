@@ -29,7 +29,6 @@
 		8AF134BE2C8126F8002E4E3C /* ProductionFavoritesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134BD2C8126F8002E4E3C /* ProductionFavoritesRepository.swift */; };
 		8AF134C02C8132CA002E4E3C /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134BF2C8132CA002E4E3C /* FavoritesManager.swift */; };
 		8AF134C22C81336A002E4E3C /* FavoriteGist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134C12C81336A002E4E3C /* FavoriteGist.swift */; };
-		8AF134C52C813CDD002E4E3C /* FavoriteGistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134C42C813CDD002E4E3C /* FavoriteGistCell.swift */; };
 		8AF134CA2C81635B002E4E3C /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134C92C81635B002E4E3C /* ImageUtil.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +54,6 @@
 		8AF134BD2C8126F8002E4E3C /* ProductionFavoritesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionFavoritesRepository.swift; sourceTree = "<group>"; };
 		8AF134BF2C8132CA002E4E3C /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		8AF134C12C81336A002E4E3C /* FavoriteGist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGist.swift; sourceTree = "<group>"; };
-		8AF134C42C813CDD002E4E3C /* FavoriteGistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGistCell.swift; sourceTree = "<group>"; };
 		8AF134C92C81635B002E4E3C /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,7 +170,6 @@
 		8AF134B52C811796002E4E3C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				8AF134C32C813CCB002E4E3C /* Components */,
 				8AF134B62C8117B2002E4E3C /* FavoritesListVC.swift */,
 				8AF134B82C811D27002E4E3C /* FavoritesListVM.swift */,
 			);
@@ -188,14 +185,6 @@
 				8AF134C12C81336A002E4E3C /* FavoriteGist.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		8AF134C32C813CCB002E4E3C /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				8AF134C42C813CDD002E4E3C /* FavoriteGistCell.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +266,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AF134C52C813CDD002E4E3C /* FavoriteGistCell.swift in Sources */,
 				8AF134A92C802B72002E4E3C /* GistDetailVC.swift in Sources */,
 				8AF134A52C80157B002E4E3C /* GistsListVM.swift in Sources */,
 				8AF1349B2C7FC335002E4E3C /* GistCell.swift in Sources */,

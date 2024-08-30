@@ -12,6 +12,7 @@ import Combine
 class GistsListVC: UITableViewController {
     private let viewModel = GistsListVM()
     private var cancellables = Set<AnyCancellable>()
+    private let cellID = "GistCell"
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -25,7 +26,7 @@ class GistsListVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(GistCell.self, forCellReuseIdentifier: "GistCell")
+        tableView.register(GistCell.self, forCellReuseIdentifier: cellID)
 
         setupBindings()
     }
@@ -55,9 +56,16 @@ class GistsListVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GistCell", for: indexPath) as! GistCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! GistCell
         let gist = viewModel.gists[indexPath.row]
-        cell.configure(with: gist)
+
+        cell.fileCountLabel.text = "\(gist.fileCount) arquivo(s)"
+        cell.titleLabel.text = "\(gist.owner.login) / \(gist.filename)"
+
+        cell.setPlaceholder()
+        Task { @MainActor in
+            cell.avatarImageView.image = await viewModel.loadGistUserAvatar(gist: gist)
+        }
         return cell
     }
 

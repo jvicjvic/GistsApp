@@ -27,27 +27,29 @@ class GistCell: UITableViewCell {
 
     lazy var fileCountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.textAlignment = .center
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        label.textAlignment = .right
+        label.textColor = .lightGray
         return label
     }()
 
-    lazy var containerView: UIView = {
-        let container = UIView()
-        container.addSubview(avatarImageView)
-        container.addSubview(titleLabel)
-        container.addSubview(fileCountLabel)
-        return container
+    lazy var contentStack: UIStackView = {
+        let avatarContent = UIView()
+        avatarContent.addSubview(avatarImageView)
+        let stack = UIStackView(arrangedSubviews: [avatarContent, titleLabel, fileCountLabel])
+        stack.spacing = .spacing8
+        return stack
     }()
 
-    lazy var placeholderImage: UIImage = {
+    static var placeholderImage: UIImage = {
         ImageUtil.generatePlaceholderImage(size: CGSize(width: 50, height: 50))
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(containerView)
+        contentView.addSubview(contentStack)
         remakeConstraints()
+
     }
 
     @available(*, unavailable)
@@ -56,34 +58,20 @@ class GistCell: UITableViewCell {
     }
 
     private func remakeConstraints() {
-        containerView.snp.makeConstraints { make in
+        contentStack.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(CGFloat.spacing16)
         }
         avatarImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.center.equalToSuperview()
             make.width.height.equalTo(CGFloat.spacing48)
-        }
-        titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(avatarImageView.snp.trailing).offset(CGFloat.spacing16)
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.width.equalToSuperview()
         }
         fileCountLabel.snp.makeConstraints { make in
-            make.leading.equalTo(titleLabel.snp.trailing).offset(CGFloat.spacing8)
-            make.top.bottom.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.width.equalTo(CGFloat.spacing72)
+            make.width.equalTo(CGFloat.spacing80)
         }
     }
 
-    func configure(with gist: Gist) {
-        fileCountLabel.text = "\(gist.fileCount) arquivo(s)"
-        titleLabel.text = "\(gist.owner.login) / \(gist.filename)"
-
-        avatarImageView.image = placeholderImage
-        Task { @MainActor in
-            await avatarImageView.image = NetworkUtil.fetchImage(from: gist.owner.avatarUrl)
-        }
+    func setPlaceholder() {
+        avatarImageView.image = GistCell.placeholderImage
     }
 }

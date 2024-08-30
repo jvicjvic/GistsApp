@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import NetworkService
+import UIKit
 
 @MainActor
 final class GistsListVM: ObservableObject {
@@ -30,7 +32,7 @@ final class GistsListVM: ObservableObject {
         }
     }
 
-    func fetchGists() async {
+    private func fetchGists() async {
         do {
             isLoading = true
             let newGists = try await repository.fetchPublicGists(page: currentPage)
@@ -40,6 +42,10 @@ final class GistsListVM: ObservableObject {
         }
         
         isLoading = false
+    }
+
+    func loadGistUserAvatar(gist: Gist) async -> UIImage? {
+        await NetworkUtil.fetchImage(from: gist.owner.avatarUrl)
     }
 
     func didReachEnd() {

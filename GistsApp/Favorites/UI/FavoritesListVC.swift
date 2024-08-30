@@ -7,11 +7,12 @@
 
 import UIKit
 import Combine
+import NetworkService
 
 class FavoritesListVC: UITableViewController {
     private let viewModel = FavoritesListVM()
     private var cancellables = Set<AnyCancellable>()
-    private let cellID = "FavoriteGistCell"
+    private let cellID = "GistCell"
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -25,7 +26,7 @@ class FavoritesListVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(FavoriteGistCell.self, forCellReuseIdentifier: cellID)
+        tableView.register(GistCell.self, forCellReuseIdentifier: cellID)
 
         setupBindings()
     }
@@ -48,9 +49,17 @@ class FavoritesListVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! FavoriteGistCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! GistCell
         let gist = viewModel.gists[indexPath.row]
-        cell.configure(with: gist)
+
+        cell.fileCountLabel.text = "\(gist.fileCount) arquivo(s)"
+        cell.titleLabel.text = "\(gist.ownerLogin) / \(gist.filename)"
+
+        cell.setPlaceholder()
+        Task { @MainActor in
+            cell.avatarImageView.image = await viewModel.loadGistUserAvatar(gist: gist)
+        }
+
         return cell
     }
 
