@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Coordinator
 
 class MainTabCoordinator: TabCoordinator {
     var rootViewController: UITabBarController

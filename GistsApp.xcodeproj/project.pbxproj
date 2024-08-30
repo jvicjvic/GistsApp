@@ -30,14 +30,12 @@
 		8AF134C02C8132CA002E4E3C /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134BF2C8132CA002E4E3C /* FavoritesManager.swift */; };
 		8AF134C22C81336A002E4E3C /* FavoriteGist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134C12C81336A002E4E3C /* FavoriteGist.swift */; };
 		8AF134CA2C81635B002E4E3C /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134C92C81635B002E4E3C /* ImageUtil.swift */; };
-		8AF134CC2C823164002E4E3C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134CB2C823164002E4E3C /* Coordinator.swift */; };
 		8AF134CF2C8231D7002E4E3C /* MainTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134CE2C8231D7002E4E3C /* MainTabCoordinator.swift */; };
 		8AF134D12C823263002E4E3C /* GistListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134D02C823263002E4E3C /* GistListCoordinator.swift */; };
 		8AF134D32C8238F2002E4E3C /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134D22C8238F2002E4E3C /* ApplicationCoordinator.swift */; };
 		8AF134D52C823AE7002E4E3C /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134D42C823AE7002E4E3C /* FavoritesCoordinator.swift */; };
-		8AF134D82C823B20002E4E3C /* NavigatorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134D72C823B20002E4E3C /* NavigatorCoordinator.swift */; };
-		8AF134DA2C82401A002E4E3C /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134D92C82401A002E4E3C /* TabCoordinator.swift */; };
 		8AF134DC2C82487A002E4E3C /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF134DB2C82487A002E4E3C /* UIViewController+Extensions.swift */; };
+		8AF134DF2C8253D5002E4E3C /* Coordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 8AF134DE2C8253D5002E4E3C /* Coordinator */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,13 +61,10 @@
 		8AF134BF2C8132CA002E4E3C /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		8AF134C12C81336A002E4E3C /* FavoriteGist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGist.swift; sourceTree = "<group>"; };
 		8AF134C92C81635B002E4E3C /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
-		8AF134CB2C823164002E4E3C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		8AF134CE2C8231D7002E4E3C /* MainTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabCoordinator.swift; sourceTree = "<group>"; };
 		8AF134D02C823263002E4E3C /* GistListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistListCoordinator.swift; sourceTree = "<group>"; };
 		8AF134D22C8238F2002E4E3C /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		8AF134D42C823AE7002E4E3C /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
-		8AF134D72C823B20002E4E3C /* NavigatorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorCoordinator.swift; sourceTree = "<group>"; };
-		8AF134D92C82401A002E4E3C /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		8AF134DB2C82487A002E4E3C /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +76,7 @@
 				8AF134972C7FB75B002E4E3C /* NetworkService in Frameworks */,
 				8AF1349F2C7FDBFB002E4E3C /* SnapKit in Frameworks */,
 				8AF134A12C7FDBFB002E4E3C /* SnapKit-Dynamic in Frameworks */,
+				8AF134DF2C8253D5002E4E3C /* Coordinator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +102,6 @@
 		8AF134442C7E4984002E4E3C /* GistsApp */ = {
 			isa = PBXGroup;
 			children = (
-				8AF134D62C823B00002E4E3C /* Coordinator */,
 				8AF134CD2C8231C9002E4E3C /* MainTab */,
 				8AF134B42C811770002E4E3C /* Favorites */,
 				8AF134A62C802B31002E4E3C /* GistDetail */,
@@ -217,16 +212,6 @@
 			path = MainTab;
 			sourceTree = "<group>";
 		};
-		8AF134D62C823B00002E4E3C /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				8AF134CB2C823164002E4E3C /* Coordinator.swift */,
-				8AF134D72C823B20002E4E3C /* NavigatorCoordinator.swift */,
-				8AF134D92C82401A002E4E3C /* TabCoordinator.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,6 +232,7 @@
 				8AF134962C7FB75B002E4E3C /* NetworkService */,
 				8AF1349E2C7FDBFB002E4E3C /* SnapKit */,
 				8AF134A02C7FDBFB002E4E3C /* SnapKit-Dynamic */,
+				8AF134DE2C8253D5002E4E3C /* Coordinator */,
 			);
 			productName = GistsApp;
 			productReference = 8AF134422C7E4984002E4E3C /* GistsApp.app */;
@@ -279,6 +265,7 @@
 			packageReferences = (
 				8AF134952C7FB75B002E4E3C /* XCLocalSwiftPackageReference "Dependencies/NetworkService" */,
 				8AF1349D2C7FDBFB002E4E3C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				8AF134DD2C8253D5002E4E3C /* XCLocalSwiftPackageReference "Dependencies/Coordinator" */,
 			);
 			productRefGroup = 8AF134432C7E4984002E4E3C /* Products */;
 			projectDirPath = "";
@@ -312,15 +299,12 @@
 				8AF1349B2C7FC335002E4E3C /* GistCell.swift in Sources */,
 				8AF134B72C8117B2002E4E3C /* FavoritesListVC.swift in Sources */,
 				8AF134602C7E4B6E002E4E3C /* Gist.swift in Sources */,
-				8AF134DA2C82401A002E4E3C /* TabCoordinator.swift in Sources */,
 				8AF134A32C7FFEFC002E4E3C /* CGFloat+SpacingTokens.swift in Sources */,
-				8AF134CC2C823164002E4E3C /* Coordinator.swift in Sources */,
 				8AF134992C7FBE74002E4E3C /* GistsListVC.swift in Sources */,
 				8AF134BC2C812689002E4E3C /* FavoritesRepository.swift in Sources */,
 				8AF134D12C823263002E4E3C /* GistListCoordinator.swift in Sources */,
 				8AF134CA2C81635B002E4E3C /* ImageUtil.swift in Sources */,
 				8AF134642C7E538A002E4E3C /* ProductionGistRepository.swift in Sources */,
-				8AF134D82C823B20002E4E3C /* NavigatorCoordinator.swift in Sources */,
 				8AF134C22C81336A002E4E3C /* FavoriteGist.swift in Sources */,
 				8AF134D52C823AE7002E4E3C /* FavoritesCoordinator.swift in Sources */,
 				8AF134B92C811D27002E4E3C /* FavoritesListVM.swift in Sources */,
@@ -550,6 +534,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Dependencies/NetworkService;
 		};
+		8AF134DD2C8253D5002E4E3C /* XCLocalSwiftPackageReference "Dependencies/Coordinator" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Dependencies/Coordinator;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -577,6 +565,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8AF1349D2C7FDBFB002E4E3C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
+		};
+		8AF134DE2C8253D5002E4E3C /* Coordinator */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Coordinator;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

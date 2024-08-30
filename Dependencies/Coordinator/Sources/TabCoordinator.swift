@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol TabCoordinator: Coordinator {
+public protocol TabCoordinator: Coordinator {
     var rootViewController: UITabBarController { get set }
     var childCoordinators: [Coordinator] { get set }
 }

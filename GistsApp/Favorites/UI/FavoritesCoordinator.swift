@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Combine
+import Coordinator
 
 class FavoritesCoordinator: NavigatorCoordinator {
     var rootViewController: UINavigationController

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Coordinator
 
 class ApplicationCoordinator: Coordinator {
     let window: UIWindow

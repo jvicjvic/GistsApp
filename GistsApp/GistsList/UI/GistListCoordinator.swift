@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Combine
+import Coordinator
 
 class GistListCoordinator: NavigatorCoordinator {
     var rootViewController: UINavigationController
