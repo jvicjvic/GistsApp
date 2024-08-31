@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 open class NetworkUtil {
-    public static func fetchImage(from urlString: String) async -> UIImage? {
+    public static func fetchImage(from urlString: String) async throws -> UIImage? {
         guard let url = URL(string: urlString) else {
-            return nil
+            throw URLError(.badURL)
         }
 
         do {

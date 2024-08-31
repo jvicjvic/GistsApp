@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+import NetworkService
 
 public final class ProductionFavoritesRepository: FavoritesRepository {
     private let favoritesManager = FavoritesManager()
@@ -26,5 +28,9 @@ public final class ProductionFavoritesRepository: FavoritesRepository {
 
     public func isFavorite<T: FavoriteItem>(item: T) -> Bool {
         favoritesManager.isFavorite(item)
+    }
+
+    public func fetchAvatarImage<T: FavoriteItem>(_ item: T) async throws -> UIImage? {
+        try await NetworkUtil.fetchImage(from: item.avatarUrl)
     }
 }

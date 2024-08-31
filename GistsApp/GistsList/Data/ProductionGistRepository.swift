@@ -7,6 +7,7 @@
 
 import Foundation
 import NetworkService
+import UIKit
 
 final class ProductionGistRepository: GistRepository {
     private let networkService: NetworkService
@@ -19,7 +20,20 @@ final class ProductionGistRepository: GistRepository {
         try await networkService.fetchPublicGists(page: page, itemsPerPage: 30)
     }
 
-    func fetchGist(gistId: String) async throws -> Gist {
-        try await networkService.fetchGistDetails(id: gistId)
+    func fetchGistData(_ gist: Gist) async throws -> Gist {
+        try await networkService.fetchGistDetails(id: gist.id)
+    }
+
+    func fetchAvatarImage(_ gist: Gist) async throws -> UIImage? {
+        try await NetworkUtil.fetchImage(from: gist.owner.avatarUrl)
+    }
+
+    func fetchFileContent(_ gist: Gist) async throws -> String? {
+        guard let gistFile = gist.files.first?.value,
+                let fileUrl = gistFile.url else {
+            return nil
+        }
+
+        return try await NetworkUtil.fetchFileContent(from: fileUrl)
     }
 }

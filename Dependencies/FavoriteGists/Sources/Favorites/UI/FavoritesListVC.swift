@@ -14,6 +14,15 @@ open class FavoritesListVC<T: FavoriteItem>: UITableViewController {
     private var cancellables = Set<AnyCancellable>()
     private let cellID = "FavoriteGistCell"
 
+    lazy var noFavoritesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Nenhum favorito ainda"
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.textColor = .lightGray
+        label.isHidden = true
+        return label
+    }()
+
     public init(viewModel: FavoritesListVM<T>) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -29,6 +38,8 @@ open class FavoritesListVC<T: FavoriteItem>: UITableViewController {
         super.viewDidLoad()
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: cellID)
 
+        view.addSubview(noFavoritesLabel)
+        remakeConstraints()
         setupBindings()
     }
 
@@ -39,10 +50,25 @@ open class FavoritesListVC<T: FavoriteItem>: UITableViewController {
     func setupBindings() {
         viewModel.$items
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.tableView.reloadData()
+            .sink { [weak self] items in
+                guard let self else { return }
+
+                if items.count == 0 {
+                    self.noFavoritesLabel.isHidden = false
+                } else {
+                    self.noFavoritesLabel.isHidden = true
+                    self.tableView.isHidden = false
+                    self.tableView.reloadData()
+                }
         }
         .store(in: &cancellables)
+    }
+
+    func remakeConstraints() {
+        noFavoritesLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-80)
+        }
     }
 
     open override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {

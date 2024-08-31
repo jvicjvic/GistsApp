@@ -46,7 +46,13 @@ final class GistsListVM {
     }
 
     func loadGistUserAvatar(gist: Gist) async -> UIImage? {
-        await NetworkUtil.fetchImage(from: gist.owner.avatarUrl)
+        do {
+            return try await repository.fetchAvatarImage(gist)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+
+        return nil
     }
 
     func didReachEnd() {

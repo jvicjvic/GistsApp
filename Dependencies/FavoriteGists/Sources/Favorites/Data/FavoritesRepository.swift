@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol FavoritesRepository {
     func fetchFavorites<T: FavoriteItem>() -> [T]
     func setFavorite<T: FavoriteItem>(item: T, isFavorite: Bool)
     func isFavorite<T: FavoriteItem>(item: T) -> Bool
+    func fetchAvatarImage<T: FavoriteItem>(_ item: T) async throws -> UIImage?
 }

@@ -36,7 +36,13 @@ open class FavoritesListVM<T: FavoriteItem> {
     }
 
     func loadUserAvatar(item: T) async -> UIImage? {
-        await NetworkUtil.fetchImage(from: item.avatarUrl)
+        do {
+            return try await repository.fetchAvatarImage(item)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+
+        return nil
     }
 
     func didSelect(index: Int) {

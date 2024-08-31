@@ -19,7 +19,7 @@ class FavoritesCoordinator: NavigatorCoordinator {
     var cancellables = Set<AnyCancellable>()
 
     @MainActor lazy var listViewModel: FavoritesListVM = {
-        let viewModel = FavoritesListVM<FavoriteGist>()
+        let viewModel = FavoritesListVM<Gist>()
         // apresenta detalhe
         viewModel.$selectedItem
             .compactMap { $0 }
@@ -40,8 +40,8 @@ class FavoritesCoordinator: NavigatorCoordinator {
         rootViewController.setViewControllers([favoritesVC], animated: false)
     }
 
-    @MainActor func presentDetail(gist: FavoriteGist) {
-        let detailVC = GistDetailVC(viewModel: GistDetailVM(gistId: gist.id))
+    @MainActor func presentDetail(gist: Gist) {
+        let detailVC = GistDetailVC(viewModel: GistDetailVM(gist: gist))
         rootViewController.pushViewController(detailVC, animated: true)
     }
 }

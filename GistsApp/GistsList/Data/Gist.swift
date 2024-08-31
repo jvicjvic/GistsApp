@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import FavoriteGists
 
-struct Gist: Codable, Identifiable {
+struct Gist: Codable, Identifiable, FavoriteItem {
     let id: String
     let description: String?
     let owner: GistOwner
@@ -19,6 +20,18 @@ struct Gist: Codable, Identifiable {
 
     var filename: String {
         files.count > 0 ? files.first!.value.filename : ""
+    }
+
+    var avatarUrl: String {
+        owner.avatarUrl
+    }
+
+    var favoriteTitle: String {
+        "\(owner.login) / \(filename)"
+    }
+
+    var favoriteSubtitle: String {
+        "\(fileCount) arquivo(s)"
     }
 }
 

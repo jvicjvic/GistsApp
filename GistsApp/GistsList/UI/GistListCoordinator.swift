@@ -41,7 +41,7 @@ class GistListCoordinator: NavigatorCoordinator {
     }
 
     @MainActor func presentDetail(gist: Gist) {
-        let detailVC = GistDetailVC(viewModel: GistDetailVM(gistId: gist.id))
+        let detailVC = GistDetailVC(viewModel: GistDetailVM(gist: gist))
         rootViewController.pushViewController(detailVC, animated: true)
     }
 }
