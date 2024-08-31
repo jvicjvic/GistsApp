@@ -7,13 +7,6 @@
 
 import Foundation
 
-public protocol FavoriteItem: Codable {
-    var id: String { get }
-    var avatarUrl: String { get }
-    var favoriteTitle: String { get }
-    var favoriteSubtitle: String { get }
-}
-
 class FavoritesManager {
     private let favoritesKey = "FavoriteGists"
 

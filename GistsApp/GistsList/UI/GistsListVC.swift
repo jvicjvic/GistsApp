@@ -19,7 +19,7 @@ class GistsListVC: UITableViewController {
         super.init(nibName: nil, bundle: nil)
 
         title = viewModel.title
-        tabBarItem.image = UIImage(systemName: "doc")
+        tabBarItem.image = UIImage(systemName: "note.text")
     }
     
     required init?(coder: NSCoder) {
