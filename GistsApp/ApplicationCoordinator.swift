@@ -5,9 +5,9 @@
 //  Created by jvic on 30/08/24.
 //
 
+import Coordinator
 import Foundation
 import UIKit
-import Coordinator
 
 class ApplicationCoordinator: Coordinator {
     let window: UIWindow

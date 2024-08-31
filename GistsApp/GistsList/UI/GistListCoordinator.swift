@@ -5,10 +5,10 @@
 //  Created by jvic on 30/08/24.
 //
 
-import Foundation
-import UIKit
 import Combine
 import Coordinator
+import Foundation
+import UIKit
 
 /// Navegação da listagem e exibição de detalhe dos Gists
 class GistListCoordinator: NavigatorCoordinator {

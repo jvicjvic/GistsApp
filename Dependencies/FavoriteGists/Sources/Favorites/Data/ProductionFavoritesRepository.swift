@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import UIKit
 import NetworkService
+import UIKit
 
 public final class ProductionFavoritesRepository: FavoritesRepository {
     private let favoritesManager = FavoritesManager()

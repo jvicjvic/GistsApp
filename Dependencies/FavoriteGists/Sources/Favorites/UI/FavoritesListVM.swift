@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import UIKit
 import NetworkService
+import UIKit
 
 @MainActor
 open class FavoritesListVM<T: FavoriteItem> {

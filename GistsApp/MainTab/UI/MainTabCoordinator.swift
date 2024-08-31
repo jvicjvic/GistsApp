@@ -5,9 +5,9 @@
 //  Created by jvic on 30/08/24.
 //
 
+import Coordinator
 import Foundation
 import UIKit
-import Coordinator
 
 /// Navegação da aba principal, contem a listagem principal de Gists e
 /// a listagem de favoritos

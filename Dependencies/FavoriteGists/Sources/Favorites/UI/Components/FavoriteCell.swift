@@ -5,10 +5,10 @@
 //  Created by jvic on 28/08/24.
 //
 
+import Commons
 import NetworkService
 import SnapKit
 import UIKit
-import Commons
 
 class FavoriteCell: UITableViewCell {
     lazy var avatarImageView: UIImageView = {
@@ -42,15 +42,12 @@ class FavoriteCell: UITableViewCell {
         return stack
     }()
 
-    static var placeholderImage: UIImage = {
-        ImageUtil.generatePlaceholderImage(size: CGSize(width: 50, height: 50))
-    }()
+    static var placeholderImage: UIImage = ImageUtil.generatePlaceholderImage(size: CGSize(width: 50, height: 50))
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(contentStack)
         remakeConstraints()
-
     }
 
     @available(*, unavailable)

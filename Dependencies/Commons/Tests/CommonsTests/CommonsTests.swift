@@ -1,5 +1,5 @@
-import XCTest
 @testable import Commons
+import XCTest
 
 final class CommonsTests: XCTestCase {
     func testExample() throws {

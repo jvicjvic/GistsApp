@@ -5,8 +5,8 @@
 //  Created by jvic on 29/08/24.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 class GistDetailVC: UIViewController {
     lazy var avatarImageView: UIImageView = {
@@ -62,8 +62,9 @@ class GistDetailVC: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-    
-    required init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -83,7 +84,7 @@ class GistDetailVC: UIViewController {
         setupBindings()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_: Bool) {
         viewModel.connect()
     }
 
@@ -116,7 +117,7 @@ extension GistDetailVC {
         // cabecalho
         viewModel.$gist
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] gist in
+            .sink { [weak self] _ in
                 guard let self else { return }
 
                 self.title = self.viewModel.title
@@ -144,8 +145,8 @@ extension GistDetailVC {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] fileContent in
                 self?.textView.text = fileContent
-        }
-        .store(in: &cancellables)
+            }
+            .store(in: &cancellables)
 
         // spinner de ocupado
         viewModel.$isLoading

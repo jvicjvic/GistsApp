@@ -5,9 +5,9 @@
 //  Created by jvic on 29/08/24.
 //
 
-import UIKit
 import Combine
 import NetworkService
+import UIKit
 
 open class FavoritesListVC<T: FavoriteItem>: UITableViewController {
     private let viewModel: FavoritesListVM<T>
@@ -29,12 +29,13 @@ open class FavoritesListVC<T: FavoriteItem>: UITableViewController {
         title = viewModel.title
         tabBarItem.image = UIImage(systemName: "star.fill")
     }
-    
-    required public init?(coder: NSCoder) {
+
+    @available(*, unavailable)
+    public required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    open override func viewDidLoad() {
+
+    override open func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: cellID)
 
@@ -43,7 +44,7 @@ open class FavoritesListVC<T: FavoriteItem>: UITableViewController {
         setupBindings()
     }
 
-    open override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_: Bool) {
         viewModel.connect()
     }
 
@@ -60,8 +61,8 @@ open class FavoritesListVC<T: FavoriteItem>: UITableViewController {
                     self.tableView.isHidden = false
                     self.tableView.reloadData()
                 }
-        }
-        .store(in: &cancellables)
+            }
+            .store(in: &cancellables)
     }
 
     func remakeConstraints() {
@@ -71,11 +72,11 @@ open class FavoritesListVC<T: FavoriteItem>: UITableViewController {
         }
     }
 
-    open override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+    override open func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return viewModel.items.count
     }
 
-    open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! FavoriteCell
         let item = viewModel.items[indexPath.row]
 
@@ -90,11 +91,11 @@ open class FavoritesListVC<T: FavoriteItem>: UITableViewController {
         return cell
     }
 
-    open override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
+    override open func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         80
     }
 
-    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override open func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.didSelect(index: indexPath.row)
     }
 }

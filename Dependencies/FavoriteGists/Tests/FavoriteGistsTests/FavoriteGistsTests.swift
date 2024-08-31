@@ -1,5 +1,5 @@
-import XCTest
 @testable import FavoriteGists
+import XCTest
 
 final class FavoriteGistsTests: XCTestCase {
     func testExample() throws {

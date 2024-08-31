@@ -5,11 +5,11 @@
 //  Created by jvic on 30/08/24.
 //
 
-import Foundation
-import UIKit
 import Combine
 import Coordinator
 import FavoriteGists
+import Foundation
+import UIKit
 
 /// Navegação da tela de Favoritos
 class FavoritesCoordinator: NavigatorCoordinator {

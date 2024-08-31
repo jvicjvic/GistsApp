@@ -10,9 +10,9 @@ import NetworkService
 import UIKit
 
 final class ProductionGistRepository: GistRepository {
-    private let networkService: NetworkService
-    
-    init(networkService: NetworkService = GistsNetworkService()) {
+    private let networkService: GistsNetwork
+
+    init(networkService: GistsNetwork = GistsNetworkService()) {
         self.networkService = networkService
     }
 
@@ -30,7 +30,8 @@ final class ProductionGistRepository: GistRepository {
 
     func fetchFileContent(_ gist: Gist) async throws -> String? {
         guard let gistFile = gist.files.first?.value,
-                let fileUrl = gistFile.url else {
+              let fileUrl = gistFile.url
+        else {
             return nil
         }
 

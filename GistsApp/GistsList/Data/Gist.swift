@@ -5,8 +5,8 @@
 //  Created by jvic on 27/08/24.
 //
 
-import Foundation
 import FavoriteGists
+import Foundation
 
 struct Gist: Codable, Identifiable, FavoriteItem {
     let id: String

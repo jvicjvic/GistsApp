@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class GistsNetworkService: NetworkService {
+open class GistsNetworkService: GistsNetwork {
     private let baseUrl = URL(string: "https://api.github.com/gists")!
 
     public init() {}
@@ -16,7 +16,7 @@ open class GistsNetworkService: NetworkService {
     public func fetchPublicGists<T: Decodable>(page: Int, itemsPerPage: Int = 30) async throws -> [T] {
         let parameters = [
             URLQueryItem(name: "page", value: String(page)),
-            URLQueryItem(name: "per_page", value: String(itemsPerPage)),
+            URLQueryItem(name: "per_page", value: String(itemsPerPage))
         ]
         let url = baseUrl.appending(path: "public").appending(queryItems: parameters)
 
@@ -48,7 +48,7 @@ open class GistsNetworkService: NetworkService {
             throw NetworkError.invalidResponse
         }
 
-        guard (200...299).contains(httpResponse.statusCode) else {
+        guard (200 ... 299).contains(httpResponse.statusCode) else {
             throw NetworkError.httpError(httpResponse.statusCode)
         }
 

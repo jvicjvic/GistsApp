@@ -5,11 +5,11 @@
 //  Created by jvic on 28/08/24.
 //
 
+import Commons
 import Foundation
 import NetworkService
-import UIKit
-import Commons
 import OSLog
+import UIKit
 
 @MainActor
 final class GistsListVM {

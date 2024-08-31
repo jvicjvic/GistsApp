@@ -12,4 +12,3 @@ public protocol NavigatorCoordinator: Coordinator {
     var rootViewController: UINavigationController { get set }
     var childCoordinators: [Coordinator] { get set }
 }
-
