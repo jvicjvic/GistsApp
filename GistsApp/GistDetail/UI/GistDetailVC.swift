@@ -155,5 +155,14 @@ extension GistDetailVC {
                 isLoading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
             }
             .store(in: &cancellables)
+
+        // tratamento de erro
+        viewModel.$errorMessage
+            .receive(on: DispatchQueue.main)
+            .compactMap { $0 }
+            .sink { [weak self] message in
+                self?.showAlertMessage(title: "Erro", message: message)
+            }
+            .store(in: &cancellables)
     }
 }

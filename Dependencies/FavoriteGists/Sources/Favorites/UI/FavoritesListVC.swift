@@ -53,14 +53,8 @@ open class FavoritesListVC<T: FavoriteItem>: UITableViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] items in
                 guard let self else { return }
-
-                if items.count == 0 {
-                    self.noFavoritesLabel.isHidden = false
-                } else {
-                    self.noFavoritesLabel.isHidden = true
-                    self.tableView.isHidden = false
-                    self.tableView.reloadData()
-                }
+                self.noFavoritesLabel.isHidden = items.count != 0
+                self.tableView.reloadData()
             }
             .store(in: &cancellables)
     }
