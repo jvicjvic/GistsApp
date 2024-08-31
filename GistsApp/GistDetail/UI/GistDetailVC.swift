@@ -84,7 +84,6 @@ class GistDetailVC: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        activityIndicator.startAnimating()
         viewModel.connect()
     }
 
@@ -130,10 +129,17 @@ class GistDetailVC: UIViewController {
             .compactMap { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] fileContent in
-                self?.activityIndicator.stopAnimating()
                 self?.textView.text = fileContent
         }
         .store(in: &cancellables)
+
+        // spinner de ocupado
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                isLoading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
+            }
+            .store(in: &cancellables)
     }
 
     func remakeConstraints() {

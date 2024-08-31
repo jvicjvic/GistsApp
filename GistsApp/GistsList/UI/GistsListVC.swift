@@ -14,12 +14,22 @@ class GistsListVC: UITableViewController {
     private var cancellables = Set<AnyCancellable>()
     private let cellID = "GistCell"
 
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.hidesWhenStopped = true
+        indicator.style = .medium
+        return indicator
+    }()
+
     init(viewModel: GistsListVM) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
 
         title = viewModel.title
         tabBarItem.image = UIImage(systemName: "note.text")
+
+        let activityIndicatorItem = UIBarButtonItem(customView: activityIndicator)
+        navigationItem.rightBarButtonItem = activityIndicatorItem
     }
     
     required init?(coder: NSCoder) {
@@ -38,6 +48,7 @@ class GistsListVC: UITableViewController {
     }
 
     func setupBindings() {
+        // listagem da tableview
         viewModel.$gists
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -45,11 +56,20 @@ class GistsListVC: UITableViewController {
             }
             .store(in: &cancellables)
 
+        // tratamento de erro
         viewModel.$errorMessage
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
             .sink { [weak self] message in
                 self?.showAlertMessage(title: "Erro", message: message)
+            }
+            .store(in: &cancellables)
+
+        // spinner de ocupado
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                isLoading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
             }
             .store(in: &cancellables)
     }

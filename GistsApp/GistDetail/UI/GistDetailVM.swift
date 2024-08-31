@@ -19,6 +19,7 @@ final class GistDetailVM {
     @Published var errorMessage = ""
     @Published var avatarImage: UIImage?
     @Published var isFavorite: Bool?
+    @Published var isLoading = false
 
     private let favoritesRepository: FavoritesRepository
     private let repository: GistRepository
@@ -43,6 +44,7 @@ final class GistDetailVM {
 
     private func performFetchGist() {
         Task {
+            isLoading = true
             do {
                 isFavorite = favoritesRepository.isFavorite(item: gist)
 
@@ -59,6 +61,7 @@ final class GistDetailVM {
                 Logger.network.error("Ocorreu um erro: \(error.localizedDescription)")
                 errorMessage = error.localizedDescription
             }
+            isLoading = false
         }
     }
 
