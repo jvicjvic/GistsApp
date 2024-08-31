@@ -159,10 +159,18 @@
 		8AF134CD2C8231C9002E4E3C /* MainTab */ = {
 			isa = PBXGroup;
 			children = (
+				8AF134EC2C82B603002E4E3C /* UI */,
+			);
+			path = MainTab;
+			sourceTree = "<group>";
+		};
+		8AF134EC2C82B603002E4E3C /* UI */ = {
+			isa = PBXGroup;
+			children = (
 				8AF134D42C823AE7002E4E3C /* FavoritesCoordinator.swift */,
 				8AF134CE2C8231D7002E4E3C /* MainTabCoordinator.swift */,
 			);
-			path = MainTab;
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
