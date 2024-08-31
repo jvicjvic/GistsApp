@@ -38,6 +38,7 @@ class GistDetailVC: UIViewController {
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.font = UIFont(name: "Menlo", size: 14)
         textView.backgroundColor = UIColor(white: 0.96, alpha: 1.0)
+        textView.isSelectable = true
         return textView
     }()
 
@@ -46,6 +47,13 @@ class GistDetailVC: UIViewController {
         stack.axis = .vertical
         stack.spacing = .spacing8
         return stack
+    }()
+
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.hidesWhenStopped = true
+        indicator.style = .large
+        return indicator
     }()
 
     let viewModel: GistDetailVM
@@ -65,6 +73,7 @@ class GistDetailVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(mainContainer)
+        view.addSubview(activityIndicator)
         remakeConstraints()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"),
@@ -75,6 +84,7 @@ class GistDetailVC: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        activityIndicator.startAnimating()
         viewModel.connect()
     }
 
@@ -117,8 +127,10 @@ class GistDetailVC: UIViewController {
 
         // arquivo
         viewModel.$fileContent
+            .compactMap { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] fileContent in
+                self?.activityIndicator.stopAnimating()
                 self?.textView.text = fileContent
         }
         .store(in: &cancellables)
@@ -135,6 +147,9 @@ class GistDetailVC: UIViewController {
             make.center.equalToSuperview()
             make.width.height.equalTo(CGFloat.spacing48)
             make.width.equalToSuperview()
+        }
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalTo(textView)
         }
     }
 }
