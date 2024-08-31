@@ -9,6 +9,8 @@ import Foundation
 import NetworkService
 import UIKit
 import FavoriteGists
+import Commons
+import os
 
 @MainActor
 final class GistDetailVM {
@@ -44,21 +46,17 @@ final class GistDetailVM {
             do {
                 isFavorite = favoritesRepository.isFavorite(item: gist)
 
+                // obtem info e imagem
                 async let data = try repository.fetchGistData(gist)
                 async let image = try repository.fetchAvatarImage(gist)
+                let (fetchedGistItem, fetchedAvatarImage) = try await (data, image)
+                gist = fetchedGistItem
+                avatarImage = fetchedAvatarImage
 
-                do {
-                    let (fetchedGistItem, fetchedAvatarImage) = try await (data, image)
-                    gist = fetchedGistItem
-                    avatarImage = fetchedAvatarImage
-                } catch {
-                    print("Ocorreu um erro: \(error)")
-                    errorMessage = error.localizedDescription
-                }
-
+                // obtem conteudo do arquivo
                 fileContent = try await repository.fetchFileContent(gist)
             } catch {
-                print(error)
+                Logger.network.error("Ocorreu um erro: \(error.localizedDescription)")
                 errorMessage = error.localizedDescription
             }
         }

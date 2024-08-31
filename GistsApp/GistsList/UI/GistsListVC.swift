@@ -67,7 +67,7 @@ class GistsListVC: UITableViewController {
 
         cell.setPlaceholder()
         Task { @MainActor in
-            cell.avatarImageView.image = await viewModel.loadGistUserAvatar(gist: gist)
+            cell.avatarImageView.image = await viewModel.loadAvatar(gist: gist)
         }
         return cell
     }

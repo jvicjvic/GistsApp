@@ -8,6 +8,8 @@
 import Foundation
 import NetworkService
 import UIKit
+import Commons
+import OSLog
 
 @MainActor
 final class GistsListVM {
@@ -28,6 +30,10 @@ final class GistsListVM {
     }
 
     func connect() {
+        performFetchGists()
+    }
+
+    private func performFetchGists() {
         Task {
             await fetchGists()
         }
@@ -39,16 +45,18 @@ final class GistsListVM {
             let newGists = try await repository.fetchPublicGists(page: currentPage)
             gists.append(contentsOf: newGists)
         } catch {
+            Logger.network.error("Ocorreu um erro: \(error.localizedDescription)")
             errorMessage = error.localizedDescription
         }
         
         isLoading = false
     }
 
-    func loadGistUserAvatar(gist: Gist) async -> UIImage? {
+    func loadAvatar(gist: Gist) async -> UIImage? {
         do {
             return try await repository.fetchAvatarImage(gist)
         } catch {
+            Logger.network.error("Ocorreu um erro: \(error.localizedDescription)")
             errorMessage = error.localizedDescription
         }
 
@@ -58,9 +66,7 @@ final class GistsListVM {
     func didReachEnd() {
         // carrega mais
         currentPage += 1
-        Task {
-            await fetchGists()
-        }
+        performFetchGists()
     }
 
     func didSelect(index: Int) {
