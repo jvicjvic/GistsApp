@@ -35,21 +35,20 @@ final class GistsListVM {
 
     private func performFetchGists() {
         Task {
+            isLoading = true
             await fetchGists()
+            isLoading = false
         }
     }
 
     private func fetchGists() async {
         do {
-            isLoading = true
             let newGists = try await repository.fetchPublicGists(page: currentPage)
             gists.append(contentsOf: newGists)
         } catch {
             Logger.network.error("Ocorreu um erro: \(error.localizedDescription)")
             errorMessage = error.localizedDescription
         }
-        
-        isLoading = false
     }
 
     func loadAvatar(gist: Gist) async -> UIImage? {

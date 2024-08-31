@@ -27,9 +27,7 @@ class GistsListVC: UITableViewController {
 
         title = viewModel.title
         tabBarItem.image = UIImage(systemName: "note.text")
-
-        let activityIndicatorItem = UIBarButtonItem(customView: activityIndicator)
-        navigationItem.rightBarButtonItem = activityIndicatorItem
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
     }
     
     required init?(coder: NSCoder) {
@@ -46,7 +44,11 @@ class GistsListVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         viewModel.connect()
     }
+}
 
+// MARK: - Bindings
+
+extension GistsListVC {
     func setupBindings() {
         // listagem da tableview
         viewModel.$gists
@@ -73,7 +75,11 @@ class GistsListVC: UITableViewController {
             }
             .store(in: &cancellables)
     }
+}
 
+// MARK: - TableView
+
+extension GistsListVC {
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return viewModel.gists.count
     }

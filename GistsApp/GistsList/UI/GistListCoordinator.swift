@@ -10,11 +10,10 @@ import UIKit
 import Combine
 import Coordinator
 
+/// Navegação da listagem e exibição de detalhe dos Gists
 class GistListCoordinator: NavigatorCoordinator {
     var rootViewController: UINavigationController
-
     var childCoordinators = [Coordinator]()
-    
     var cancellables = Set<AnyCancellable>()
 
     init() {
@@ -36,7 +35,6 @@ class GistListCoordinator: NavigatorCoordinator {
 
     func start() {
         let listVC = GistsListVC(viewModel: listViewModel)
-
         rootViewController.setViewControllers([listVC], animated: false)
     }
 

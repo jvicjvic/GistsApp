@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import Coordinator
 
+/// Navegação da aba principal, contem a listagem principal de Gists e
+/// a listagem de favoritos
 class MainTabCoordinator: TabCoordinator {
     var rootViewController: UITabBarController
 

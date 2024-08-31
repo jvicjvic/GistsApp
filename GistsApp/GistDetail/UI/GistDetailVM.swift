@@ -16,7 +16,7 @@ import os
 final class GistDetailVM {
     @Published private(set) var gist: Gist
     @Published private(set) var fileContent: String?
-    @Published var errorMessage = ""
+    @Published var errorMessage: String?
     @Published var avatarImage: UIImage?
     @Published var isFavorite: Bool?
     @Published var isLoading = false
@@ -65,6 +65,7 @@ final class GistDetailVM {
         }
     }
 
+    /// Marca um item como favorito
     func didTapFavorite() {
         var newStatus = isFavorite ?? false
         newStatus.toggle()

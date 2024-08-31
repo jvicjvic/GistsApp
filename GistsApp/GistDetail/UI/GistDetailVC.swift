@@ -91,15 +91,37 @@ class GistDetailVC: UIViewController {
         viewModel.didTapFavorite()
     }
 
+    func remakeConstraints() {
+        mainContainer.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide).inset(CGFloat.spacing16)
+        }
+        headerContainer.snp.makeConstraints { make in
+            make.height.equalTo(CGFloat.spacing64)
+        }
+        avatarImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(CGFloat.spacing48)
+            make.width.equalToSuperview()
+        }
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalTo(textView)
+        }
+    }
+}
+
+// MARK: - Bindings
+
+extension GistDetailVC {
     func setupBindings() {
         // cabecalho
         viewModel.$gist
             .receive(on: DispatchQueue.main)
             .sink { [weak self] gist in
                 guard let self else { return }
-                
+
                 self.title = self.viewModel.title
                 self.titleLabel.text = self.viewModel.headerTitle
+                self.avatarImageView.image = self.viewModel.avatarImage
             }
             .store(in: &cancellables)
 
@@ -115,14 +137,6 @@ class GistDetailVC: UIViewController {
                 self.navigationItem.rightBarButtonItem?.image = UIImage(systemName: imageName)
             }
             .store(in: &cancellables)
-
-        // avatar
-        viewModel.$avatarImage
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] image in
-                self?.avatarImageView.image = image
-        }
-        .store(in: &cancellables)
 
         // arquivo
         viewModel.$fileContent
@@ -140,22 +154,5 @@ class GistDetailVC: UIViewController {
                 isLoading ? self?.activityIndicator.startAnimating() : self?.activityIndicator.stopAnimating()
             }
             .store(in: &cancellables)
-    }
-
-    func remakeConstraints() {
-        mainContainer.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide).inset(CGFloat.spacing16)
-        }
-        headerContainer.snp.makeConstraints { make in
-            make.height.equalTo(CGFloat.spacing64)
-        }
-        avatarImageView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.height.equalTo(CGFloat.spacing48)
-            make.width.equalToSuperview()
-        }
-        activityIndicator.snp.makeConstraints { make in
-            make.center.equalTo(textView)
-        }
     }
 }

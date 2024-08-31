@@ -11,6 +11,7 @@ import Combine
 import Coordinator
 import FavoriteGists
 
+/// Navegação da tela de Favoritos
 class FavoritesCoordinator: NavigatorCoordinator {
     var rootViewController: UINavigationController
 
@@ -20,7 +21,8 @@ class FavoritesCoordinator: NavigatorCoordinator {
 
     @MainActor lazy var listViewModel: FavoritesListVM = {
         let viewModel = FavoritesListVM<Gist>()
-        // apresenta detalhe
+
+        // apresenta detalhe na selecao do item
         viewModel.$selectedItem
             .compactMap { $0 }
             .sink { [weak self] gist in
