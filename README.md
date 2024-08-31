@@ -12,6 +12,7 @@
 * Evitei usar libs externas, a única utilizada foi o SnapKit para  ajustes de layout. Todos os layouts foram feitos em código.
 * As dependencias que foram criadas para o projeto estão localizadas na pasta 'Dependencies' na raiz do projeto. Utilizei o SPM para gerenciamento.
 * Conforme os requisitos, criei um módulo para rede (`NetworkService`) e um para a tela de favoritos (`FavoriteGists`).
+* Utilizei Combine apenas para gerenciamento de eventos. Cogitei fazer de outras maneiras, mas assim me pareceu mais prático.
 
 # Screenshots
 ![Simulator Screen Recording - iPhone 15 Pro - 2024-08-31 at 13 08 50](https://github.com/user-attachments/assets/6021805b-6228-49d3-8a8e-371cb26941b4)
