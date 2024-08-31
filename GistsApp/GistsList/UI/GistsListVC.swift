@@ -40,10 +40,11 @@ class GistsListVC: UITableViewController {
         tableView.register(GistCell.self, forCellReuseIdentifier: cellID)
 
         setupBindings()
+        viewModel.connect()
     }
 
     override func viewWillAppear(_: Bool) {
-        viewModel.connect()
+        tableView.reloadData()
     }
 }
 

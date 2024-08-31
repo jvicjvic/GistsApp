@@ -82,9 +82,6 @@ class GistDetailVC: UIViewController {
         navigationItem.rightBarButtonItem?.isEnabled = false
 
         setupBindings()
-    }
-
-    override func viewWillAppear(_: Bool) {
         viewModel.connect()
     }
 
