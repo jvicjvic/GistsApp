@@ -10,7 +10,7 @@ import SnapKit
 import UIKit
 import Commons
 
-class GistCell: UITableViewCell {
+class FavoriteCell: UITableViewCell {
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -73,6 +73,6 @@ class GistCell: UITableViewCell {
     }
 
     func setPlaceholder() {
-        avatarImageView.image = GistCell.placeholderImage
+        avatarImageView.image = FavoriteCell.placeholderImage
     }
 }

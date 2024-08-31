@@ -10,12 +10,12 @@ import UIKit
 import NetworkService
 
 @MainActor
-final class FavoritesListVM {
-    @Published private(set) var gists: [FavoriteGist] = []
+open class FavoritesListVM<T: FavoriteItem> {
+    @Published private(set) var items: [T] = []
     @Published private(set) var isLoading = false
     @Published var errorMessage = ""
 
-    @Published var selectedItem: FavoriteGist?
+    @Published public var selectedItem: T?
 
     let title = "Favoritos"
 
@@ -23,23 +23,23 @@ final class FavoritesListVM {
 
     private let repository: FavoritesRepository
 
-    init(repository: FavoritesRepository = ProductionFavoritesRepository()) {
+    public init(repository: FavoritesRepository = ProductionFavoritesRepository()) {
         self.repository = repository
     }
 
     func connect() {
-        fetchGists()
+        fetchItems()
     }
 
-    private func fetchGists() {
-        gists = repository.fetchFavorites()
+    private func fetchItems() {
+        items = repository.fetchFavorites()
     }
 
-    func loadGistUserAvatar(gist: FavoriteGist) async -> UIImage? {
-        await NetworkUtil.fetchImage(from: gist.avatarUrl)
+    func loadUserAvatar(item: T) async -> UIImage? {
+        await NetworkUtil.fetchImage(from: item.avatarUrl)
     }
 
     func didSelect(index: Int) {
-        selectedItem = gists[index]
+        selectedItem = items[index]
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 open class ImageUtil {
-    static func generatePlaceholderImage(size: CGSize, backgroundColor: UIColor = UIColor(white: 0.9, alpha: 1.0), text: String? = nil) -> UIImage {
+    public static func generatePlaceholderImage(size: CGSize, backgroundColor: UIColor = UIColor(white: 0.9, alpha: 1.0), text: String? = nil) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: size)
         let image = renderer.image { context in
             // Preencher o fundo com a cor especificada

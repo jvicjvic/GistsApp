@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class GistsNetworkService {
+open class GistsNetworkService: NetworkService {
     private let baseUrl = URL(string: "https://api.github.com/gists")!
 
     public init() {}

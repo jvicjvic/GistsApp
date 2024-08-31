@@ -23,8 +23,7 @@ final class GistsListVM {
 
     private let repository: GistRepository
 
-    init(repository: GistRepository = ProductionGistRepository(), 
-         favoritesRepository: FavoritesRepository = ProductionFavoritesRepository()) {
+    init(repository: GistRepository = ProductionGistRepository()) {
         self.repository = repository
     }
 

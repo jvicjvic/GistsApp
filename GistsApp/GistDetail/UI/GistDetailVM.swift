@@ -8,11 +8,12 @@
 import Foundation
 import NetworkService
 import UIKit
+import FavoriteGists
 
 @MainActor
 final class GistDetailVM {
     @Published private(set) var gist: Gist?
-    private var gistId: String
+    private var gistId: String // FIXME: remove
     @Published private(set) var fileContent: String?
     @Published var errorMessage = ""
     @Published var avatarImage: UIImage?
@@ -43,7 +44,7 @@ final class GistDetailVM {
     private func performFetchGist() {
         Task {
             do {
-                isFavorite = favoritesRepository.isFavorite(id: gistId)
+                isFavorite = favoritesRepository.isFavorite(item: FavoriteGist(id: gistId))
                 let gistItem = try await repository.fetchGist(gistId: gistId)
                 avatarImage = await NetworkUtil.fetchImage(from: gistItem.owner.avatarUrl)
                 gist = gistItem
@@ -76,7 +77,7 @@ final class GistDetailVM {
 
         var newStatus = isFavorite ?? false
         newStatus.toggle()
-        favoritesRepository.setFavorite(gist: favoriteGist, isFavorite: newStatus)
+        favoritesRepository.setFavorite(item: favoriteGist, isFavorite: newStatus)
         isFavorite = newStatus
     }
 }

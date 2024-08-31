@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Combine
 import Coordinator
+import FavoriteGists
 
 class FavoritesCoordinator: NavigatorCoordinator {
     var rootViewController: UINavigationController
@@ -18,7 +19,7 @@ class FavoritesCoordinator: NavigatorCoordinator {
     var cancellables = Set<AnyCancellable>()
 
     @MainActor lazy var listViewModel: FavoritesListVM = {
-        let viewModel = FavoritesListVM()
+        let viewModel = FavoritesListVM<FavoriteGist>()
         // apresenta detalhe
         viewModel.$selectedItem
             .compactMap { $0 }
